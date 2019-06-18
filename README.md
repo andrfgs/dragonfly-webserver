@@ -20,3 +20,24 @@ The system works by disposing plants in a circular pattern and the dragonfly wat
 <br>
 
 This allows a custom watering regime for different plants. All plants are also registered in Dragonfly's databases, which allows the system to know what that plant's specific water and lighting requirements.
+
+## Running the Project
+
+This webserver project uses *Jersey*, a Java framework that allows an easy binding for REST operations, through annotations.
+
+The project has been run in Tomcat, but any Java web server should work.
+<br>
+<br>
+
+#### Deploying to Tomcat
+
+Using Maven terminal:
+1. Start the Tomcat server
+2. Execute command `mvn -e tomcat7:deploy` on Maven. This will also use the War plugin, which packs all the web content and compiled java classes.
+
+Using IntelliJ:
+1. Start the Tomcat server
+2. From the Run/Debug tab, click on `Edit Configurations...`
+3. Click on the plus sign to add a new run configuration and choose `Maven`
+4. On the `Command Line` textbox, insert `-e tomcat7:deploy`
+5. Click `OK`. After this, IntelliJ will have a clickable Run configuration

@@ -1,5 +1,7 @@
 package com.dragonfly.manager;
 
+import com.dragonfly.entity.NotificationLog;
+import com.dragonfly.entity.SensorLog;
 import com.dragonfly.entity.Unit;
 import com.dragonfly.exception.UnitNotFoundException;
 
@@ -17,9 +19,18 @@ public class UnitManager {
         return u;
     }
 
-    public static void sensorLog(int unitID, float temperature, float humidity, boolean wasJustWatered, int sector) throws NoSuchMethodException, UnitNotFoundException, IllegalAccessException, InstantiationException, SQLException, InvocationTargetException {
-        getUnit(unitID);
+    public static void createSensorLog(SensorLog log) throws NoSuchMethodException, UnitNotFoundException, IllegalAccessException, InstantiationException, SQLException, InvocationTargetException {
+        getUnit(log.getUnitID());
 
-
+        DatabaseConnection.executeQuery("CALL CreateSensorLog(?, ?, ?, ?, ?, ?)",
+                System.currentTimeMillis(), log.getUnitID(), log.getTemperature(), log.getHumidity(), log.wasJustWatered(), log.getSector());
     }
+
+    public static void createNotificationLog(NotificationLog log) throws NoSuchMethodException, UnitNotFoundException, IllegalAccessException, InstantiationException, SQLException, InvocationTargetException {
+        getUnit(log.getUnitID());
+
+        DatabaseConnection.executeQuery("CALL CreateNotificationLog(?, ?, ?, ?, ?, ?)",
+                System.currentTimeMillis(), log.getUnitID(), log.getContent(), log.getLevel(), false, log.getSector());
+    }
+
 }

@@ -27,7 +27,7 @@ public class PlantService {
             DefaultLogger.get().log(Level.FINE, "Testing Service request received!");
         }
 
-        return Response.status(500).build();
+        return Response.status(400).build();
     }
 
 }

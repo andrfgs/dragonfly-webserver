@@ -24,19 +24,19 @@ public class PlantationService {
 
         try {
             if (!TokenManager.isTokenValid(username, tokenID))
-                return Response.status(400).entity("InvalidCredentialsException").build();
+                return Response.status(Response.Status.BAD_REQUEST).entity("InvalidCredentialsException").build();
 
             List<Plantation> plantations = PlantationManager.getUnitPlantations(username, unitID);
             return Response.status(200).entity(plantations).build();
         } catch (UserNotFoundException e) {
-            return Response.status(400).entity("UserNotFoundException").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("UserNotFoundException").build();
 
         } catch (UnitNotFoundException e) {
-            return Response.status(400).entity("UnitNotFoundException").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("UnitNotFoundException").build();
 
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | SQLException | InvocationTargetException e) {
             e.printStackTrace();
-            return Response.status(400).build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 }

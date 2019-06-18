@@ -49,15 +49,14 @@ public class UserService {
             return Response.status(200).entity(t).build();
 
         } catch (UserNotFoundException e) {
-            return Response.status(400).entity("UserNotFoundException").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("UserNotFoundException").build();
 
         } catch (InvalidCredentialsException e) {
-            return Response.status(400).entity("InvalidCredentialsException").build();
+            return Response.status(Response.Status.FORBIDDEN).entity("InvalidCredentialsException").build();
 
         } catch (InstantiationException | InvocationTargetException | SQLException | NoSuchMethodException | IllegalAccessException e) {
             DefaultLogger.get().log(Level.WARNING, ExceptionUtils.stackTraceToString(e));
             e.printStackTrace();
-
         }
 
         return Response.status(400).build();

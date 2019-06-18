@@ -1,8 +1,11 @@
 package com.dragonfly.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SensorLog extends Log {
     private float temperature;
     private float humidity;
+    @JsonProperty("wasJustWatered")
     private boolean wasJustWatered;
     private int sector;
 
@@ -25,7 +28,7 @@ public class SensorLog extends Log {
         return humidity;
     }
 
-    public boolean isWasJustWatered() {
+    public boolean wasJustWatered() {
         return wasJustWatered;
     }
 

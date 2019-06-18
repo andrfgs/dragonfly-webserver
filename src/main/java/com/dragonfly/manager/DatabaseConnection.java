@@ -87,7 +87,6 @@ public class DatabaseConnection {
             f.setAccessible(true);
         }
 
-
         List<T> createdObjs = new LinkedList<>();
         while (rs.next())
         {
